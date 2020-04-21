@@ -10,12 +10,11 @@ namespace Circus_Trein
     {
         private List<Wagon> wagons = new List<Wagon>();
 
-
         public Train()
         {
             ResetWagons();
         }
-
+        
         private void ResetWagons()
         {
             wagons.Clear();
@@ -39,7 +38,6 @@ namespace Circus_Trein
                         wagons[i].AddAnimalToWagon(animal);
                         break;
                     }
-
 
                     if (i != wagons.Count - 1) continue;
                     // Als het dier niet in de wagon past

@@ -8,13 +8,10 @@ namespace Circus_Trein
 {
     public class Wagon
     {
+        
         private List<Animal> animalsInWagon = new List<Animal>();
         private int maxSize = 10;
 
-        public Wagon()
-        {
-
-        }
 
         // Kijkt of de Animal erin past en krijgt grootte terug
         public bool CanFitAnimal(Animal animalToAdd)
@@ -41,8 +38,27 @@ namespace Circus_Trein
 
         public void AddAnimalToWagon(Animal animalToAdd)
         {
-            animalsInWagon.Add(animalToAdd);
+
+            Animal animal;
+
+            animal = animalToAdd;
+            try
+            {
+                
+                if (CanFitAnimal(animal))
+                {
+                    animalsInWagon.Add(animal);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
         }
+
+
 
         private int GetEmptySize()
         {
@@ -56,6 +72,17 @@ namespace Circus_Trein
 
             // Return the size
             return size;
+        }
+
+        public override string ToString()
+        {
+            string result = "";
+            foreach (var animal in animalsInWagon)
+            {
+                result =  animal.ToString();
+            }
+
+            return result;
         }
 
         public List<Animal> GetAnimalsList()

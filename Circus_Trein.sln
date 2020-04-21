@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circus_Trein", "Circus_Trein\Circus_Trein.csproj", "{30706055-8B0B-43F1-AF0D-8A51DF31E74C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circus_Trein.Tests", "Circus_Trein.Tests\Circus_Trein.Tests.csproj", "{5BFDFC7D-EB16-49F1-8749-3767D8CB03B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{30706055-8B0B-43F1-AF0D-8A51DF31E74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30706055-8B0B-43F1-AF0D-8A51DF31E74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30706055-8B0B-43F1-AF0D-8A51DF31E74C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BFDFC7D-EB16-49F1-8749-3767D8CB03B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BFDFC7D-EB16-49F1-8749-3767D8CB03B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BFDFC7D-EB16-49F1-8749-3767D8CB03B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BFDFC7D-EB16-49F1-8749-3767D8CB03B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

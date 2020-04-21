@@ -56,6 +56,7 @@ namespace Circus_Trein
             }
 
            
+            
             //Animal animal = new Animal(animalNameTxtbox.Text, GetSelectedSize(), GetSelectedDiet());
 
             animals.Add(new Animal(animalNameTxtbox.Text, GetSelectedSize(), GetSelectedDiet()));
@@ -74,6 +75,13 @@ namespace Circus_Trein
 
         private void calcWagonsBtn_Click(object sender, EventArgs e)
         {
+            Wagon wagon = new Wagon();
+
+
+            wagon.AddAnimalToWagon(new Animal("asdasd", Circus_Trein.AnimalSize.Large, Circus_Trein.AnimalDiet.Carnivore));
+            wagon.AddAnimalToWagon(new Animal("asdasd", Circus_Trein.AnimalSize.Large, Circus_Trein.AnimalDiet.Carnivore));
+            wagon.AddAnimalToWagon(new Animal("asdasd", Circus_Trein.AnimalSize.Large, Circus_Trein.AnimalDiet.Carnivore));
+            wagon.AddAnimalToWagon(new Animal("asdasd", Circus_Trein.AnimalSize.Large, Circus_Trein.AnimalDiet.Carnivore));
             wagonsTxtbox.Text = null;
 
             train.AddAnimalsToWagons(animals);
@@ -87,9 +95,10 @@ namespace Circus_Trein
                 {
                     wagonsTxtbox.Text += animal.ToString() + "\r\n";
                 }
-
+               
                 wagonsTxtbox.Text += "\r\n";
             }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
