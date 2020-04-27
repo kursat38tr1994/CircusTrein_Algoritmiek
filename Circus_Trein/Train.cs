@@ -9,11 +9,6 @@ namespace Circus_Trein
     public class Train 
     {
         private List<Wagon> wagons = new List<Wagon>();
-
-        public Train()
-        {
-            ResetWagons();
-        }
         
         private void ResetWagons()
         {

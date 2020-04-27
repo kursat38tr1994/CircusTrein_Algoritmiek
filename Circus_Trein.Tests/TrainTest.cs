@@ -1,32 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Holle_dolle_circus_trein;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Circus_Trein.Tests
 {
-    public class TrainTest
-    {
         [TestClass]
-        public class UnitTest1
+        public class TrainTest
         {
+
             [TestMethod]
-            public void AddAnimalToWagon() 
+            public void No_Animals_Lead_To_0_Wagons()
             {
-                List<Animal> animals = new List<Animal>();
-                Train train = new Circus_Trein.Train();
+                Train train = new Train();
 
-                animals.Add(new Animal("Animal", AnimalSize.Large, AnimalDiet.Herbivore));
-                animals.Add(new Animal("Animal", AnimalSize.Large, AnimalDiet.Herbivore));
-                animals.Add(new Animal("Animal", AnimalSize.Small, AnimalDiet.Carnivore));
-                animals.Add(new Animal("Animal", AnimalSize.Medium, AnimalDiet.Herbivore));
-                animals.Add(new Animal("Animal", AnimalSize.Medium, AnimalDiet.Herbivore));
-                animals.Add(new Animal("Animal", AnimalSize.Medium, AnimalDiet.Herbivore));
+                var result = train.Getwagons();
 
-                train.AddAnimalsToWagons(animals);
+                Assert.AreEqual(0, result.Count);
 
+            }
+
+            [TestMethod]
+            public void One_Carni_Small__Herbi_Medium_Two_Herbi_Large_In_Ten_Wagons()
+            {
+                Train train = new Train();
+
+                var animallist = AnimalFactory.TestCase2();
+                train.AddAnimalsToWagons(animallist);
+
+                var expected = AnimalFactory.ExpectedWagonAnimalsTestCase1();
+                var actual = train.Getwagons();
+
+                CollectionAssert.AreEqual(expected, actual);
                 Assert.AreEqual(2, train.Getwagons().Count);
             }
-        }
+
+            //[TestMethod]
+            //public void Ten_Large_Carnivores_In_Ten_Wagons()
+            //{
+            //    Train train = new Train();
+
+            //    var list = AnimalFactory.TestCase1();
+            //    train.AddAnimalsToWagons(list);
+
+            //    Assert.AreEqual(10, train.Getwagons().Count);
+            //}
     }
 }
