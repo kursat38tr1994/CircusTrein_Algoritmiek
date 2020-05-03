@@ -7,15 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Circus_Trein.Exception;
 
 namespace Circus_Trein
 {
     public partial class Form1 : Form
     {
         Train train = new Train();
+        public List<Wagon> wagon2 = new List<Wagon>();
         public Form1()
         {
             InitializeComponent();
+       
         }
 
         List<Animal> animals = new List<Animal>();
@@ -75,25 +78,31 @@ namespace Circus_Trein
 
         private void calcWagonsBtn_Click(object sender, EventArgs e)
         {
-            Wagon wagon = new Wagon();
+            
+            var wagon = new Wagon();
+            
+            wagon.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+            wagon.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+            wagon2.Add(wagon);
 
-
-            wagon.AddAnimalToWagon(new Animal("asdasd", Circus_Trein.AnimalSize.Large, Circus_Trein.AnimalDiet.Carnivore));
-            wagon.AddAnimalToWagon(new Animal("asdasd", Circus_Trein.AnimalSize.Large, Circus_Trein.AnimalDiet.Carnivore));
-            wagon.AddAnimalToWagon(new Animal("asdasd", Circus_Trein.AnimalSize.Large, Circus_Trein.AnimalDiet.Carnivore));
-            wagon.AddAnimalToWagon(new Animal("asdasd", Circus_Trein.AnimalSize.Large, Circus_Trein.AnimalDiet.Carnivore));
+            List<Wagon> wagonss = train.Getwagons();
+            foreach (var animal in wagonss.SelectMany(t => t.GetAnimalsList()))
+            {
+                wagonsTxtbox.Text += animal;
+            }
+            
             wagonsTxtbox.Text = null;
-
+            
             train.AddAnimalsToWagons(animals);
-
-            List<Wagon> wagons = train.Getwagons();
-
-            for (int i = 0; i < wagons.Count; i++)
+            
+            var wagons = train.Getwagons();
+            
+            for (var i = 0; i < wagons.Count; i++)
             {
                 wagonsTxtbox.Text += "Wagon " + (i + 1) + "\r\n";
-                foreach (Animal animal in wagons[i].GetAnimalsList())
+                foreach (var animal in wagons[i].GetAnimalsList())
                 {
-                    wagonsTxtbox.Text += animal.ToString() + "\r\n";
+                    wagonsTxtbox.Text += animal + "\r\n";
                 }
                
                 wagonsTxtbox.Text += "\r\n";
@@ -103,7 +112,7 @@ namespace Circus_Trein
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+          
         }
     }
 }

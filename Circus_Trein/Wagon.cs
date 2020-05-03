@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Circus_Trein.Exception;
 
 namespace Circus_Trein
 {
@@ -11,11 +12,20 @@ namespace Circus_Trein
         
         private List<Animal> animalsInWagon = new List<Animal>();
         private int maxSize = 10;
+        private bool addAnimal = true;
 
 
         // Kijkt of de Animal erin past en krijgt grootte terug
         public bool CanFitAnimal(Animal animalToAdd)
         {
+            try
+            {
+
+            }
+            catch (WagonException)
+            {
+               
+            }
             // Als er niet genoeg ruimte over is voor het dier
             if (GetEmptySize() < animalToAdd.GetSize())
             {
@@ -38,27 +48,18 @@ namespace Circus_Trein
 
         public void AddAnimalToWagon(Animal animalToAdd)
         {
-
-            Animal animal;
-
-            animal = animalToAdd;
             try
             {
-                
-                if (CanFitAnimal(animal))
-                {
-                    animalsInWagon.Add(animal);
-                }
+                if (!CanFitAnimal(animalToAdd)) return;
+                animalsInWagon.Add(animalToAdd);
+                addAnimal = true;
             }
-            catch (Exception e)
+            catch (WagonException)
             {
-                Console.WriteLine(e);
-                throw;
+                throw new WagonException("My message here!");
             }
-           
+            
         }
-
-
 
         private int GetEmptySize()
         {

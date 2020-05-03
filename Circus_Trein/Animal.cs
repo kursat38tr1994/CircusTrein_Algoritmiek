@@ -22,6 +22,11 @@ namespace Circus_Trein
             this.Diet = diet;
         }
 
+        public Animal()
+        {
+         
+        }
+
         public int GetSize()
         {
             return (int)Size;

@@ -47,7 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animal.cs" />
-    <Compile Include="AnimalFactory.cs" />
+    <Compile Include="AnimalFactory\AnimalFactory.cs" />
+    <Compile Include="AnimalFactory\AnimalMockup.cs" />
+    <Compile Include="AnimalFactory\ExpectedAnimals.cs" />
+    <Compile Include="AnimalFactory\ExtentionMethods.cs" />
+    <Compile Include="Exception\WagonException.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +87,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

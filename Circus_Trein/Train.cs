@@ -21,8 +21,11 @@ namespace Circus_Trein
         {
             ResetWagons();
 
-            animalQueueList = animalQueueList.OrderByDescending(x => x.Size).ToList();
-
+            animalQueueList = animalQueueList.OrderByDescending(
+                x => x.Size )
+                .ThenByDescending(x => x.Diet == AnimalDiet.Carnivore).ToList();
+            
+            
             foreach (Animal animal in animalQueueList)
             {
                 for (int i = 0; i < wagons.Count; i++)
