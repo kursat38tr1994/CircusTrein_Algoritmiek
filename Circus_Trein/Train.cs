@@ -6,30 +6,26 @@ using System.Threading.Tasks;
 
 namespace Circus_Trein
 {
-    public class Train 
+    public class Train
     {
         private List<Wagon> wagons = new List<Wagon>();
+
         
-        private void ResetWagons()
-        {
-            wagons.Clear();
-            wagons.Add(new Wagon());
-        }
-
-
         public void AddAnimalsToWagons(List<Animal> animalQueueList)
         {
-            ResetWagons();
-
-            animalQueueList = animalQueueList.OrderByDescending(
-                x => x.Size )
+            animalQueueList = animalQueueList.OrderByDescending(x => x.Size)
                 .ThenByDescending(x => x.Diet == AnimalDiet.Carnivore).ToList();
             
-            
-            foreach (Animal animal in animalQueueList)
+           // ResetWagons();
+            foreach (var animal in animalQueueList)
             {
-                for (int i = 0; i < wagons.Count; i++)
+                if (wagons.Count == 0)
                 {
+                    wagons.Add(new Wagon());
+                }
+                for (var i = 0; i < wagons.Count; i++)
+                {
+                 
 
                     if (wagons[i].CanFitAnimal(animal))
                     {

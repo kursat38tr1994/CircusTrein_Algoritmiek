@@ -9,34 +9,25 @@ namespace Circus_Trein
 {
     public class Wagon
     {
-        
         private List<Animal> animalsInWagon = new List<Animal>();
         private int maxSize = 10;
-        private bool addAnimal = true;
-
 
         // Kijkt of de Animal erin past en krijgt grootte terug
         public bool CanFitAnimal(Animal animalToAdd)
         {
-            try
-            {
-
-            }
-            catch (WagonException)
-            {
-               
-            }
             // Als er niet genoeg ruimte over is voor het dier
             if (GetEmptySize() < animalToAdd.GetSize())
             {
                 return false;
             }
+
             // Als er een dier in de animalList zit die carnivore is en groter of gelijk is dan het dier dat je wilt toevoegen
             // Index groter dan -1 betekent dat er een dier is gevonden in de lijst
             if (animalsInWagon.FindIndex(a => a.Diet == AnimalDiet.Carnivore && a.Size >= animalToAdd.Size) > -1)
             {
                 return false;
             }
+
             // Als je een carnivore toevoegt terwijl er in de wagon al een ander dier zit dat even groot of kleiner is
             if (animalsInWagon.FindIndex(a => a.Size <= animalToAdd.Size && animalToAdd.Diet == AnimalDiet.Carnivore) > -1)
             {
@@ -49,26 +40,24 @@ namespace Circus_Trein
         public void AddAnimalToWagon(Animal animalToAdd)
         {
             try
-            {
+            { 
                 if (!CanFitAnimal(animalToAdd)) return;
                 animalsInWagon.Add(animalToAdd);
-                addAnimal = true;
             }
             catch (WagonException)
             {
-                throw new WagonException("My message here!");
+                throw new WagonException("Geen dier kunnen toevoegen");
             }
-            
         }
 
         private int GetEmptySize()
         {
             int size = maxSize;
             // De size van de animal wordt van de 10 afgetrokken
-            for (int i = 0; i < animalsInWagon.Count; i++)
+            foreach (var animal in animalsInWagon)
             {
                 // De Animal size van de animal methode in de animal class wordt hier doorheen gelopen
-                size -= animalsInWagon[i].GetSize();
+                size -= animal.GetSize();
             }
 
             // Return the size
@@ -80,15 +69,15 @@ namespace Circus_Trein
             string result = "";
             foreach (var animal in animalsInWagon)
             {
-                result =  animal.ToString();
+                result = animal.ToString();
             }
 
             return result;
         }
 
-        public List<Animal> GetAnimalsList()
+        public IEnumerable<Animal> GetAnimalsList()
         {
-            return animalsInWagon;
+            return animalsInWagon.ToList();
         }
     }
 }

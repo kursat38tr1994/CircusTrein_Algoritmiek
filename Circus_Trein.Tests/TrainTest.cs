@@ -64,7 +64,7 @@ namespace Circus_Trein.Tests
             }
             
             [TestMethod]
-            public void Ten_Large_Carnivores_In_Ten_Wagons2()
+            public void Two_Carnivore_Large_Three_Herbivore_Large_Medium_Herbivore_Small_Carnivore_Medium_Herbivore_In_Five_Wagons2()
             {
                 var train = new Train();
 

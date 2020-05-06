@@ -14,7 +14,7 @@ namespace Circus_Trein
     public partial class Form1 : Form
     {
         Train train = new Train();
-        public List<Wagon> wagon2 = new List<Wagon>();
+        
         public Form1()
         {
             InitializeComponent();
@@ -69,7 +69,6 @@ namespace Circus_Trein
             
             foreach (var animal in animals)
             {
-                
                 animalListTxtbox.Text += animal + "\r\n";
             }
 
@@ -78,19 +77,7 @@ namespace Circus_Trein
 
         private void calcWagonsBtn_Click(object sender, EventArgs e)
         {
-            
-            var wagon = new Wagon();
-            
-            wagon.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
-            wagon.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
-            wagon2.Add(wagon);
 
-            List<Wagon> wagonss = train.Getwagons();
-            foreach (var animal in wagonss.SelectMany(t => t.GetAnimalsList()))
-            {
-                wagonsTxtbox.Text += animal;
-            }
-            
             wagonsTxtbox.Text = null;
             
             train.AddAnimalsToWagons(animals);
@@ -107,7 +94,6 @@ namespace Circus_Trein
                
                 wagonsTxtbox.Text += "\r\n";
             }
-            
         }
 
         private void Form1_Load(object sender, EventArgs e)
