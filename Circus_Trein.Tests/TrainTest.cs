@@ -27,21 +27,21 @@ namespace Circus_Trein.Tests
             {
                 Train train = new Train();
                 
+                
                 var animals = AnimalMockup.TestCase2();
                 train.AddAnimalsToWagons(animals);
-
-                ///////
-              
+                
+                
                 var train1 = ExpectedAnimals.ExpectedWagonAnimalsTestCase2();
                 var train2 = train.Getwagons();
 
+                
                 var expected = ExtentionMethods.CompareWagonAnimals(train1);
                 var actual = ExtentionMethods.CompareWagonAnimals(train2);
                 
                 
                 CollectionAssert.AreEquivalent(expected, actual);
                 Assert.AreEqual(2, train.Getwagons().Count);
-                
             }
 
             [TestMethod]
@@ -70,7 +70,6 @@ namespace Circus_Trein.Tests
 
                 var list = AnimalMockup.TestCase3();
                 train.AddAnimalsToWagons(list);
-    
                 
                 var train1 = ExpectedAnimals.ExpectedWagonAnimalsTestCase3();
                 var train2 = train.Getwagons();

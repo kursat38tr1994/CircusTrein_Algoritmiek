@@ -39,15 +39,14 @@ namespace Circus_Trein
 
         public void AddAnimalToWagon(Animal animalToAdd)
         {
-            try
-            { 
-                if (!CanFitAnimal(animalToAdd)) return;
-                animalsInWagon.Add(animalToAdd);
-            }
-            catch (WagonException)
-            {
-                throw new WagonException("Geen dier kunnen toevoegen");
-            }
+            if (CanFitAnimal(animalToAdd))
+                {
+                    animalsInWagon.Add(animalToAdd);
+                }
+                else
+                {
+                    throw new WagonException();
+                }
         }
 
         private int GetEmptySize()

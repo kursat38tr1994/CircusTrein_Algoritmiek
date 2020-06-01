@@ -9,24 +9,12 @@ namespace Circus_Trein.Tests
     [TestClass]
     public class WagonTest
     {
-        private  Wagon _wagons;
+        private Wagon _wagons;
 
         [TestInitialize]
         public void NewWagons()
         {
             _wagons = new Wagon();
-        }
-
-        [TestMethod]
-        public void Cant_Add_Animal_To_Wagon_With_Same_Or_Bigger_Animal()
-        {
-            _wagons.AddAnimalToWagon(new Animal("Carnivore", AnimalSize.Large, AnimalDiet.Carnivore));
-
-
-            Animal animal = new Animal("Hernivore", AnimalSize.Medium, AnimalDiet.Herbivore);
-            var result = _wagons.CanFitAnimal(animal);
-
-            Assert.IsFalse(result);
         }
 
 
@@ -45,37 +33,373 @@ namespace Circus_Trein.Tests
 
 
         [TestMethod]
-        public void Cant_Add_Smaller_Animal_To_Wagon_With_Same_Or_Bigger_Animal()
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Small_Carnivore_With_Small_Herbivore()
         {
-            Wagon wagon = new Wagon();
-            wagon.AddAnimalToWagon(new Animal("Carnivore", AnimalSize.Large, AnimalDiet.Herbivore));
+            //var exception = false;
+
+            // catch (WagonException)
+            // {
+            //     ex = true;
+            // }
+            //Assert.IsTrue(ex);
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
 
 
-            Animal animal = new Animal("Hernivore", AnimalSize.Large, AnimalDiet.Carnivore);
-            var result = wagon.CanFitAnimal(animal);
-
-            Assert.IsFalse(result);
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallCarnivore);
         }
 
         [TestMethod]
-        //[ExpectedException(typeof(WagonException))]
-        public void asdasda()
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Small_Carnivore_With_Small_Carnivore()
         {
-            var ex = false;
-           _wagons.AddAnimalToWagon(AnimalFactory.MediumCarnivore);
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallCarnivore);
 
-           try
-           {
-               _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
-           }
-           catch (WagonException)
-           {
-               ex = true;
-           }
-           Assert.IsTrue(ex);
-      
-           
-           
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallCarnivore);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Medium_Carnivore_With_Small_Carnivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumCarnivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallCarnivore);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Medium_Carnivore_With_Small_Herbivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumCarnivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Medium_Carnivore_With_Medium_Carnivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumCarnivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumCarnivore);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Medium_Carnivore_With_Medium_Herbivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumCarnivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+        }
+
+        /// <summary>
+        /// //////////////////////////////////////////////
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Large_Carnivore_With_Small_Herbivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Large_Carnivore_With_Small_Carnivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallCarnivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Large_Carnivore_With_Medium_Carnivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumCarnivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Large_Carnivore_With_Medium_Herbivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Large_Carnivore_With_Large_Herbivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeHerbivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(WagonException))]
+        public void Cant_Add_Large_Carnivore_With_Large_Carnivore()
+        {
+            // Arrange
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+
+            // Act
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeCarnivore);
+        }
+
+        /// <summary>
+        /// //////////////////////////////////////////////
+        /// </summary>
+        
+        [TestMethod]
+        public void Can_Add_Small_Herbivore_With_Small_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        
+        [TestMethod]
+        public void Can_Add_Small_Herbivore_With_Medium_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        [TestMethod]
+        public void Can_Add_Small_Herbivore_With_Large_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        [TestMethod]
+        public void Can_Add_Medium_Herbivore_With_Small_Carnivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallCarnivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        [TestMethod]
+        public void Can_Add_Medium_Herbivore_With_Small_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        
+        [TestMethod]
+        public void Can_Add_Medium_Herbivore_With_Medium_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        [TestMethod]
+        public void Can_Add_Medium_Herbivore_With_Large_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        
+        [TestMethod]
+        public void Can_Add_Large_Herbivore_With_Small_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.LargeHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+
+        [TestMethod]
+        public void Can_Add_Large_Herbivore_With_Small_Carnivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.SmallCarnivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.LargeHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        [TestMethod]
+        public void Can_Add_Large_Herbivore_With_Medium_Carnivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumCarnivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.LargeHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        [TestMethod]
+        public void Can_Add_Large_Herbivore_With_Medium_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.MediumHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.LargeHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
+        [TestMethod]
+        public void Can_Add_Large_Herbivore_With_Large_Herbivore()
+        {
+            _wagons.AddAnimalToWagon(AnimalFactory.LargeHerbivore);
+            var exception = true;
+
+            try
+            {
+                _wagons.AddAnimalToWagon(AnimalFactory.LargeHerbivore);
+            }
+            catch (WagonException)
+            {
+                exception = false;
+            }
+
+            Assert.IsTrue(exception);
+        }
+        
     }
 }

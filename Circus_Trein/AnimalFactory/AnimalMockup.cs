@@ -59,50 +59,5 @@ namespace Circus_Trein
 
             return _animals;
         }
-        
-        public static List<Animal> TestCase4()
-        {
-
-
-            return _animals;
-        }
-        
-        public static List<Animal> TestCase5()
-        {
-          
-
-            return _animals;
-        }
-        
-        public static List<Animal> TestCase6()
-        {
-         
-
-            return _animals;
-            
-        }
-        public static List<Animal> TestCase7()
-        {
-        
-
-            return _animals;
-        }
-        public static List<Animal> TestCase8()
-        {
-           
-            return _animals;
-        }
-        public static List<Animal> TestCase9()
-        {
-           
-
-            return _animals;
-        }
-        
-        public static List<Animal> TestCase10()
-        {
-            
-            return _animals;
-        }
     }
 }
